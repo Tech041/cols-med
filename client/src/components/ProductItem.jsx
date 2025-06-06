@@ -7,7 +7,8 @@ const ProductItem = ({ name, description, imgUrl }) => {
   const encodedMessage = encodeURIComponent(
     `I want to buy ${name} - ${imgUrl}`
   );
-  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+;
 
   return (
     <div className="w-full h-full pb-10 relative ">
