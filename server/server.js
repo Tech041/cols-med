@@ -6,7 +6,7 @@ import helmet from "helmet";
 import connectCloudinary from "./config/cloudinary.js";
 import listingRouter from "./routes/listing.route.js";
 
-const allowedOrigins = ["http://localhost:3000"];
+const allowedOrigins = ["http://localhost:3000", "https://cols-med.vercel.app"];
 
 const app = express();
 // middlewares

@@ -3,6 +3,12 @@
 import { Link } from "react-router-dom";
 
 const ProductItem = ({ name, description, imgUrl }) => {
+  const phoneNumber = "08030507512"; // Replace with your WhatsApp number
+  const encodedMessage = encodeURIComponent(
+    `I want to buy ${name} - ${imgUrl}`
+  );
+  const whatsappUrl = `https://api.whatsapp.com/send?phone=${phoneNumber}&text=${encodedMessage}`;
+
   return (
     <div className="w-full h-full pb-10 relative ">
       <h1 className="text-3xl font-bold black text-center text-white py-2 bg-gradient-to-tl from-orange-400 to-green-700 mt-5">
@@ -30,12 +36,14 @@ const ProductItem = ({ name, description, imgUrl }) => {
               </Link>
             </div>
             <div className="pt-4 flex items-center justify-center">
-              <Link
-                to={"/"}
-                className="text-sm text-white  italic px-4 py-1 rounded-lg bg-green-600 hover:bg-green-400 shadow-lg transition duration-300 ease-in-out cursor-pointer"
+              <a
+                href={whatsappUrl}
+                className="text-sm text-white italic px-4 py-1 rounded-lg bg-green-600 hover:bg-green-400 shadow-lg transition duration-300 ease-in-out cursor-pointer"
+                target="_blank"
+                rel="noopener noreferrer"
               >
                 Buy now
-              </Link>
+              </a>
             </div>
           </div>
         </div>

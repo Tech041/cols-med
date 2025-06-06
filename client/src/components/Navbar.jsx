@@ -34,7 +34,7 @@ const Navbar = () => {
                   className="w-[50px] h-[50px] rounded-full "
                 />
               </span>
-              <span className="text-xl font-bold text-green-800 hidden md:block   ">
+              <span className="text-xl font-bold text-orange-500 hidden md:block   ">
                 Cols-nutraceutical
               </span>
             </Link>
