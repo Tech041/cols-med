@@ -2,7 +2,7 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import connectDB from "./config/mongodb.js";
-import helmet from "helmet";
+// import helmet from "helmet";
 import connectCloudinary from "./config/cloudinary.js";
 import listingRouter from "./routes/listing.route.js";
 
@@ -19,7 +19,7 @@ app.use(
   })
 );
 app.use(express.json());
-app.use(helmet());
+// app.use(helmet());
 
 // DB Connection
 connectDB();
