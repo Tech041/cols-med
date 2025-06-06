@@ -9,7 +9,6 @@ import apiRequest from "../../utils/apiRequest";
 import { useEffect } from "react";
 import { useContext } from "react";
 import { AppContext } from "../../context/AppContext";
-import { toast } from "react-toastify";
 import { useState } from "react";
 
 const Home = () => {
@@ -26,7 +25,6 @@ const Home = () => {
         setListing(res.data.allProducts.reverse());
         setLoading(false);
       } else {
-        toast.error(res.data.message);
         console.log("Error fetching all products", res.data.message);
       }
     } catch (error) {

@@ -5,6 +5,7 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
   const [allListing, setAllListing] = useState([]);
   const [listing, setListing] = useState([]);
+  const [search, setSearch] = useState('');
   // For gemini
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
@@ -59,6 +60,8 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const value = {
+    search,
+    setSearch,
     listing,
     setListing,
     allListing,

@@ -19,7 +19,7 @@ const ProductDetails = () => {
       const res = await apiRequest.post(`/api/single-product/${id}`);
       if (res.data.success) {
         setProduct(res.data.singleProduct);
-        console.log("SINGLE product", res.data.singleProduct);
+        console.log("Single product", res.data.singleProduct);
 
         setLoading(false);
       } else {
@@ -46,6 +46,7 @@ const ProductDetails = () => {
                 name={product.name}
                 description={product.description}
                 imgUrl={product.imgUrl}
+                id={product._id}
               />
             )
           )}

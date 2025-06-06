@@ -1,8 +1,31 @@
 // import EditListing from "./EditListing";
 
-import { Link } from "react-router-dom";
+import { useState } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import EditListing from "./EditListing";
+import { toast } from "react-toastify";
+import apiRequest from "../utils/apiRequest";
 
-const ProductItem = ({ name, description, imgUrl }) => {
+const ProductItem = ({ name, description, imgUrl, id }) => {
+  const [isEditing, setIsEditing] = useState(false);
+  const navigate = useNavigate();
+  // Handle editing
+  const exitEditing = () => {
+    setIsEditing(false);
+    window.location.reload();
+  };
+
+  // Delete listing
+  const handleDeleteList = async (id) => {
+    const res = await apiRequest.delete(`/api/delete-listing/${id}`);
+    if (res.data.success) {
+      toast.success(res.data.message);
+      navigate("/");
+    } else {
+      toast.error(res.data.message);
+    }
+  };
+  // Whatsapp message generator
   const phoneNumber = "+2348065057485"; // Replace with your WhatsApp number
   const encodedMessage = encodeURIComponent(
     `I want to buy ${name}. View the image here: ${imgUrl}`
@@ -10,6 +33,9 @@ const ProductItem = ({ name, description, imgUrl }) => {
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   return (
     <div className="w-full h-full pb-10 relative ">
+      {isEditing && (
+        <EditListing exit={exitEditing} desc={description} id={id} />
+      )}
       <h1 className="text-3xl font-bold black text-center text-white py-2 bg-gradient-to-tl from-orange-400 to-green-700 mt-5">
         Product Details
       </h1>
@@ -47,23 +73,23 @@ const ProductItem = ({ name, description, imgUrl }) => {
           </div>
         </div>
       </div>
-      {/* actions */}
-      {/* <div className="flex justify-center items-center gap-3 my-4">
+      {/* actions  */}
+      <div className="flex justify-center items-center gap-3 my-4">
         <button
           onClick={() => {
             setIsEditing(true), scrollTo(0, 0);
           }}
           className="px-3 py-1 bg-gradient-to-tr from-blue-600 to-blue-300 rounded-lg"
         >
-          Edit Listing
+          Edit Post
         </button>
         <button
           onClick={() => handleDeleteList(id)}
           className="px-3 py-1 bg-gradient-to-tr from-red-600 to-red-300 rounded-lg"
         >
-          Delete Listing
+          Delete Post
         </button>
-      </div> */}
+      </div>
     </div>
   );
 };

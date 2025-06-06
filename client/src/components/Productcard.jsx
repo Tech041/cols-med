@@ -5,6 +5,11 @@ import { Link } from "react-router-dom";
 
 const ProductCard = ({ name, imgUrl, id }) => {
   const [isClicked, setIsClicked] = useState(false);
+  const phoneNumber = "+2348065057485"; // Replace with your WhatsApp number
+  const encodedMessage = encodeURIComponent(
+    `I want to buy ${name}. View the image here: ${imgUrl}`
+  );
+  const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   return (
     <div
       to={"/"}
@@ -35,14 +40,14 @@ const ProductCard = ({ name, imgUrl, id }) => {
         </div>
 
         <div className=" absolute left-1 bottom-2 pr-2 ">
-          <Link
-            to={"/"}
-            onClick={() => scrollTo(0, 0)}
-            // onClick={() => scrollTo(0, 0)}
+          <a
+            href={whatsappUrl}
+            target="_blank"
+            rel="noopener noreferrer"
             className="text-sm text-white  italic px-2 py-1 rounded-lg bg-green-600 hover:bg-green-400 shadow-lg transition duration-300 ease-in-out cursor-pointer"
           >
             Buy now
-          </Link>
+          </a>
         </div>
         <div className=" pl-2 absolute right-1 bottom-2">
           <Link
