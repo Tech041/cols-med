@@ -3,7 +3,7 @@
 import { Link } from "react-router-dom";
 
 const ProductItem = ({ name, description, imgUrl }) => {
-  const phoneNumber = "+2348030507512"; // Replace with your WhatsApp number
+  const phoneNumber = "+2348065057485"; // Replace with your WhatsApp number
   const encodedMessage = encodeURIComponent(
     `I want to buy ${name}. View the image here: ${imgUrl}`
   );
