@@ -13,7 +13,6 @@ import apiRequest from "../../utils/apiRequest";
 const Products = () => {
   const { search, setSearch } = useContext(AppContext);
   const [showSearch, setShowSearch] = useState(true);
-  const [isLoading, setIsLoading] = useState(false);
   const [listed, setListed] = useState([]);
   // for fetching and saving products
   const [loading, setLoading] = useState(false);
@@ -48,11 +47,6 @@ const Products = () => {
       );
     }
     setListed(productCopy);
-    console.log("Listed", listed);
-
-    setIsLoading(true);
-    // setListed(listing);
-    setIsLoading(false);
   };
   useEffect(() => {
     filterProperty();
