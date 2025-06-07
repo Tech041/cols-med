@@ -6,7 +6,8 @@ import { FaFacebookF } from "react-icons/fa6";
 import { FaLinkedinIn } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const mobileStyle = "cursor-pointer text-white w-[100px]";
 const liStyles =
@@ -14,6 +15,7 @@ const liStyles =
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { token } = useContext(AppContext);
 
   return (
     <header className=" fixed   h-[80px]  w-full  flex justify-center items-center bg-green-800 z-40">
@@ -65,49 +67,22 @@ const Navbar = () => {
                     Products
                   </Link>
                 </li>
-
-                {/* {token ? (
-                  <Link onClick={() => scrollTo(0, 0)} to={"/messages"} className="text-red-700">
-                    Messages
-                  </Link>
-                ) : (
-                  <li onClick={() => scrollTo(0, 0)} className={liStyles}>
-                    <Link to="/admin">Admin</Link>
+                {token && (
+                  <li className={liStyles}>
+                    <Link onClick={() => scrollTo(0, 0)} to={"/post"}>
+                      Post
+                    </Link>
                   </li>
-                )} */}
+                )}
+
+                {!token && (
+                  <li onClick={() => scrollTo(0, 0)} className={liStyles}>
+                    <Link to="/login">Admin</Link>
+                  </li>
+                )}
               </ul>
             </div>
             <div className="flex-1 flex  items-center gap-4 justify-end ">
-              {/* {isAuth ? (
-                <Button
-                  children={
-                    <span onClick={Logout} className="">
-                      Logout
-                    </span>
-                  }
-                  buttonClass={
-                    " bg-black hover:opacity-80 text-white px-3 md:px-4 py-1 md:py-2  flex justify-center items-center gap-2 rounded-md"
-                  }
-                  // iconClass={"text-white"}
-                />
-              ) : (
-                <Button
-                  children={
-                    <Link
-                      onClick={() => scrollTo(0, 0)}
-                      to={"/login"}
-                      className=""
-                    >
-                      Login
-                    </Link>
-                  }
-                  buttonClass={
-                    " bg-black hover:opacity-80 text-white px-3 md:px-4 py-1 md:py-2  flex justify-center items-center gap-2 rounded-md"
-                  }
-                  // iconClass={"text-white"}
-                />
-              )} */}
-
               <div
                 onClick={() => setIsOpen((prev) => !prev)}
                 className="md:hidden z-40 cursor-pointer"
@@ -168,18 +143,26 @@ const Navbar = () => {
                   Products
                 </Link>
               </li>
-              {/* <li
+              {token && (
+                <li
+                  onClick={() => setIsOpen((prev) => !prev)}
+                  className={mobileStyle}
+                >
+                  <Link
+                    onClick={() => scrollTo(0, 0)}
+                    to={"/post"}
+                    className=""
+                  >
+                    Post
+                  </Link>
+                </li>
+              )}
+              <li
                 onClick={() => setIsOpen((prev) => !prev)}
                 className={mobileStyle}
               >
-                {token ? (
-                  <Link onClick={() => scrollTo(0, 0)} to={"/messages"} className="text-red-700">
-                    Messages
-                  </Link>
-                ) : (
-                  <Link to="/admin">Admin</Link>
-                )}{" "}
-              </li> */}
+                {!token && <Link to="/login">Admin</Link>}
+              </li>
             </ul>
             {/* social links */}
             <div className="flex items-center justify-center gap-5 pt-10 ">

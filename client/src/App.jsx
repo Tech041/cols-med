@@ -12,6 +12,7 @@ import Post from "./pages/post/Post";
 import { ToastContainer } from "react-toastify";
 import { useContext } from "react";
 import { AppContext } from "./context/AppContext";
+import Login from "./pages/admin/Login";
 
 const App = () => {
   const { allListing } = useContext(AppContext);
@@ -26,6 +27,7 @@ const App = () => {
         <Route path="/products" element={<Products listing={allListing} />} />
         <Route path="/post" element={<Post />} />
         <Route path="/chatbot" element={<Gemini />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/product-details/:id" element={<ProductDetails />} />
       </Routes>
       <Footer />

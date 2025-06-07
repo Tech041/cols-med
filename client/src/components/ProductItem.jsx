@@ -5,9 +5,13 @@ import { Link, useNavigate } from "react-router-dom";
 import EditListing from "./EditListing";
 import { toast } from "react-toastify";
 import apiRequest from "../utils/apiRequest";
+import { AppContext } from "../context/AppContext";
+import { useContext } from "react";
 
 const ProductItem = ({ name, description, imgUrl, id }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const { token } = useContext(AppContext);
+
   const navigate = useNavigate();
   // Handle editing
   const exitEditing = () => {
@@ -17,7 +21,9 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
 
   // Delete listing
   const handleDeleteList = async (id) => {
-    const res = await apiRequest.delete(`/api/delete-listing/${id}`);
+    const res = await apiRequest.delete(`/api/delete-listing/${id}`, {
+      headers: { token },
+    });
     if (res.data.success) {
       toast.success(res.data.message);
       navigate("/");
@@ -60,36 +66,40 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
                 More clinical insights here
               </Link>
             </div>
-            <div className="pt-4 flex items-center justify-center">
-              <a
-                href={whatsappUrl}
-                className="text-sm text-white italic px-4 py-1 rounded-lg bg-green-600 hover:bg-green-400 shadow-lg transition duration-300 ease-in-out cursor-pointer"
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Buy now
-              </a>
-            </div>
+            {!token && (
+              <div className="pt-4 flex items-center justify-center">
+                <a
+                  href={whatsappUrl}
+                  className="text-sm text-white italic px-4 py-1 rounded-lg bg-green-600 hover:bg-green-400 shadow-lg transition duration-300 ease-in-out cursor-pointer"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Buy now
+                </a>
+              </div>
+            )}
           </div>
         </div>
       </div>
       {/* actions  */}
-      <div className="flex justify-center items-center gap-3 my-4">
-        <button
-          onClick={() => {
-            setIsEditing(true), scrollTo(0, 0);
-          }}
-          className="px-3 py-1 bg-gradient-to-tr from-blue-600 to-blue-300 rounded-lg"
-        >
-          Edit Post
-        </button>
-        <button
-          onClick={() => handleDeleteList(id)}
-          className="px-3 py-1 bg-gradient-to-tr from-red-600 to-red-300 rounded-lg"
-        >
-          Delete Post
-        </button>
-      </div>
+      {token && (
+        <div className="flex justify-center items-center gap-3 my-4">
+          <button
+            onClick={() => {
+              setIsEditing(true), scrollTo(0, 0);
+            }}
+            className="px-3 py-1 bg-gradient-to-tr from-blue-600 to-blue-300 rounded-lg"
+          >
+            Edit Post
+          </button>
+          <button
+            onClick={() => handleDeleteList(id)}
+            className="px-3 py-1 bg-gradient-to-tr from-red-600 to-red-300 rounded-lg"
+          >
+            Delete Post
+          </button>
+        </div>
+      )}
     </div>
   );
 };

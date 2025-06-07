@@ -5,7 +5,8 @@ export const AppContext = createContext();
 export const AppContextProvider = ({ children }) => {
   const [allListing, setAllListing] = useState([]);
   const [listing, setListing] = useState([]);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState("");
+  const [token, setToken] = useState(sessionStorage.getItem("token"));
   // For gemini
   const [input, setInput] = useState("");
   const [recentPrompt, setRecentPrompt] = useState("");
@@ -60,6 +61,8 @@ export const AppContextProvider = ({ children }) => {
   };
 
   const value = {
+    token,
+    setToken,
     search,
     setSearch,
     listing,

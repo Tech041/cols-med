@@ -5,7 +5,6 @@ import streamifier from "streamifier";
 export const listProducts = async (req, res) => {
   try {
     const { name, description } = req.body;
-    console.log("RED.BODY", req.body);
     if (!name || !description) {
       return res.json({
         success: false,
@@ -80,5 +79,42 @@ export const singleProduct = async (req, res) => {
   } catch (error) {
     console.log("Error from single product controller", error);
     return res.json({ success: false, message: error.message });
+  }
+};
+
+// Edit product
+
+export const editListing = async (req, res) => {
+  try {
+    const { id, newDesc } = req.body;
+    if (!id || !newDesc) {
+      return res.json({ success: false, message: "All field required" });
+    }
+
+    await Listing.findByIdAndUpdate(
+      id,
+      { description: newDesc },
+      { new: true }
+    );
+
+    return res.json({
+      success: true,
+      message: "Edited successfully",
+    });
+  } catch (error) {
+    console.log("Error editing list", error);
+    return res.json({ message: error });
+  }
+};
+
+// Delete Listing
+
+export const deleteList = async (req, res) => {
+  try {
+    const { id } = req.params;
+    await Listing.findByIdAndDelete(id);
+    return res.json({ success: true, message: "Deleted successfully" });
+  } catch (error) {
+    console.log("Error deleting listing", error);
   }
 };

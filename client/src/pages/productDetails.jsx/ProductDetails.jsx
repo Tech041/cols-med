@@ -7,6 +7,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 
+
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);

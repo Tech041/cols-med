@@ -2,6 +2,10 @@ import { useRef, useState } from "react";
 import { toast } from "react-toastify";
 import { assets } from "../../assets/assets";
 import apiRequest from "../../utils/apiRequest";
+import { useContext } from "react";
+import { AppContext } from "../../context/AppContext";
+import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Post = () => {
   //   const { isAuth } = useContext(AppContext);
@@ -11,6 +15,8 @@ const Post = () => {
   // state for the products
   const [name, setName] = useState("");
   const [description, setDescription] = useState("");
+  const { token } = useContext(AppContext);
+  const navigate = useNavigate();
 
   const formRef = useRef(null);
 
@@ -38,6 +44,9 @@ const Post = () => {
       toast.error(error.message);
     }
   };
+  useEffect(() => {
+    !token && navigate("/");
+  }, [token]);
 
   return (
     <section className="w-full h-full mb-10  pt-20 ">

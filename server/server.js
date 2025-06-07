@@ -4,20 +4,14 @@ import cors from "cors";
 import connectDB from "./config/mongodb.js";
 // import helmet from "helmet";
 import connectCloudinary from "./config/cloudinary.js";
-import listingRouter from "./routes/listing.route.js";
+import listingRouter from "./routes/product.js";
+import adminRouter from "./routes/admin.js";
 
 const allowedOrigins = ["http://localhost:3000", "https://cols-med.vercel.app"];
 
 const app = express();
 // middlewares
-app.use(
-  cors({
-    origin: allowedOrigins,
-    credentials: true,
-    methods: ["GET", "POST", "DELETE"],
-    allowedHeaders: ["Content-Type", "Authorization"],
-  })
-);
+app.use(cors());
 app.use(express.json());
 // app.use(helmet());
 
@@ -28,6 +22,7 @@ const port = process.env.Port || 8000;
 
 // Routes
 app.use("/api", listingRouter);
+app.use("/api", adminRouter);
 app.use("/", (req, res) => {
   return res.send("API IS WORKING");
 });

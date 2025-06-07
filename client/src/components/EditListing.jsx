@@ -1,17 +1,24 @@
 import React, { useState } from "react";
 import apiRequest from "../utils/apiRequest";
 import { toast } from "react-toastify";
+import { useContext } from "react";
+import { AppContext } from "../context/AppContext";
 
 const EditListing = ({ exit, desc, id }) => {
   const [newDesc, setNewDesc] = useState(desc);
+  const { token } = useContext(AppContext);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await apiRequest.post("/api/edit-listing", {
-        id,
-        newDesc,
-      });
+      const res = await apiRequest.post(
+        "/api/edit-listing",
+        {
+          id,
+          newDesc,
+        },
+        { headers: { token } }
+      );
       if (res.data.success) {
         toast.success(res.data.message);
         setNewDesc("");

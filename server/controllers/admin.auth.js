@@ -13,7 +13,7 @@ const adminLogin = async (req, res) => {
       const token = jwt.sign(email + password, process.env.JWT_SECRET);
       return res.json({ success: true, token, mesaage: "Login successful" });
     } else {
-      return res.json({ success: false, message: "Unauthorized access" });
+      return res.json({ success: false, message: "unauthorized access" });
     }
   } catch (error) {
     console.log("Error logging  in  admin ", error);
