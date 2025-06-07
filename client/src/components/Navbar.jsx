@@ -1,9 +1,7 @@
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
-
-import { FaWhatsapp } from "react-icons/fa6";
 import { FaFacebookF } from "react-icons/fa6";
-import { FaLinkedinIn } from "react-icons/fa6";
+import { FaInstagram } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { useContext } from "react";
@@ -168,30 +166,24 @@ const Navbar = () => {
             <div className="flex items-center justify-center gap-5 pt-10 ">
               <div className=" bg-blue-700 p-2 rounded-full">
                 <a
-                  href="https://www.facebook.com/mandela.nelson.18062"
+                  href="https://www.facebook.com/share/1BsrNLBAEd/"
                   target="_blank"
                   className=""
                 >
                   <span className="">
-                    <FaFacebookF size={20} color="white" />
+                    <FaFacebookF size={15} color="white" />
                   </span>
                 </a>
               </div>
-              <div className="bg-blue-700 p-2 rounded-full">
+
+              <div className="bg-white p-2 rounded-full">
                 <a
-                  href="https://www.linkedin.com/in/nel21"
+                  href="https://www.instagram.com/kaceefresh"
                   target="_blank"
                   className=""
                 >
                   <span className="">
-                    <FaLinkedinIn size={20} color="white" />
-                  </span>
-                </a>
-              </div>
-              <div className="bg-green-700 p-2 rounded-full">
-                <a href="https://wa.link/cfop30" target="_blank" className="">
-                  <span className="">
-                    <FaWhatsapp size={20} color="white" />
+                    <FaInstagram size={15} color="red" />
                   </span>
                 </a>
               </div>

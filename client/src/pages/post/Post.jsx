@@ -49,7 +49,7 @@ const Post = () => {
   }, [token]);
 
   return (
-    <section className="w-full h-full mb-10  pt-20 ">
+    <section className="w-full h-full md:h-screen mb-10  pt-20 ">
       <div className="container">
         <div className="w-full h-full flex flex-col justify-center items-center">
           <h1 className="text-sm py-4 font-semibold  text-red-700">

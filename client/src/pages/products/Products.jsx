@@ -8,14 +8,37 @@ import { useEffect } from "react";
 import ProductCard from "../../components/Productcard";
 import Spinner from "../../components/Spinner";
 import Search from "../../components/Search";
+import apiRequest from "../../utils/apiRequest";
 
-const Products = ({ listing }) => {
+const Products = () => {
   const { search, setSearch } = useContext(AppContext);
   const [showSearch, setShowSearch] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
   const [listed, setListed] = useState([]);
+  // for fetching and saving products
+  const [loading, setLoading] = useState(false);
+  const { listing, setListing } = useContext(AppContext);
 
-  console.log("ALL listing is ", listing);
+  // To fetch product on background
+
+  const fetchAllListing = async () => {
+    setLoading(true);
+    try {
+      const res = await apiRequest.get("/api/all-products");
+      if (res.data.success) {
+        setListing(res.data.allProducts);
+        setLoading(false);
+      } else {
+        console.log("Error fetching all products", res.data.message);
+      }
+    } catch (error) {
+      console.log("Error fetching all list", error.message);
+    }
+  };
+  useEffect(() => {
+    fetchAllListing();
+  }, []);
+
 
   const filterProperty = async () => {
     let productCopy = listing.slice();
@@ -54,12 +77,17 @@ const Products = ({ listing }) => {
           </span>
         </div>{" "}
         <div className="h-full w-full">
-          {isLoading ? (
+          {loading ? (
             <Spinner />
           ) : (
             <div className="grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 gap-4 mt-5 ">
               {listed?.map((item) => (
-                <ProductCard key={item._id} id={item._id} name={item.name} imgUrl={item.imgUrl} />
+                <ProductCard
+                  key={item._id}
+                  id={item._id}
+                  name={item.name}
+                  imgUrl={item.imgUrl}
+                />
               ))}
             </div>
           )}

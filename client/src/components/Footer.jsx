@@ -1,14 +1,12 @@
-
 import { FaInstagram } from "react-icons/fa6";
-import { FaWhatsapp } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 import { FaFacebookF } from "react-icons/fa6";
 import { FaPhone } from "react-icons/fa";
+import { FaTiktok } from "react-icons/fa6";
+import { RiTwitterXLine } from "react-icons/ri";
 const Footer = () => {
   return (
-    <footer
-      className="bg-green-800  text-white h-full"
-      id="footer"
-    >
+    <footer className="bg-green-800  text-white h-full" id="footer">
       <div className="container">
         <div className="flex flex-col md:flex-row md:justify-between md:items-center  gap-14  text-sm">
           <div className="">
@@ -33,29 +31,32 @@ const Footer = () => {
             </p>
             <ul className="flex flex-col gap-1">
               <li className="cursor-pointer py-1">
-                <a href="#home" className="">
+                <Link onClick={() => scrollTo(0, 0)} to={"/"} className="">
                   Home
-                </a>
+                </Link>
               </li>
               <li className="cursor-pointer">
-                <a href="#benefits" className="">
-                  Benefits
-                </a>
+                <Link to={"/about"} onClick={() => scrollTo(0, 0)} className="">
+                  About
+                </Link>
               </li>
               <li className="cursor-pointer py-1">
-                <a href="#about" className="">
-                  About Us
-                </a>
-              </li>
-              <li className="cursor-pointer">
-                <a href="#products" className="">
-                  Products
-                </a>
-              </li>
-              <li className="cursor-pointer py-1">
-                <a href="#contact" className="">
+                <Link
+                  onClick={() => scrollTo(0, 0)}
+                  to={"/contact"}
+                  className=""
+                >
                   Contact Us
-                </a>
+                </Link>
+              </li>
+              <li className="cursor-pointer">
+                <Link
+                  onClick={() => scrollTo(0, 0)}
+                  to={"/products"}
+                  className=""
+                >
+                  Products
+                </Link>
               </li>
             </ul>
           </div>
@@ -68,46 +69,57 @@ const Footer = () => {
                 <div className="flex items-center justify-center gap-3 ">
                   <div className="">
                     <a
-                      href="https://www.facebook.com/share/1A8YHCQtsR/"
+                      href="https://www.facebook.com/share/1BsrNLBAEd/"
                       target="_blank"
                       className=""
                     >
                       <span className="">
-                        <FaFacebookF size={20} color="blue" />
+                        <FaFacebookF size={20} color="white" />
                       </span>
                     </a>
                   </div>
                   <div className="">
                     <a
-                      href="https://www.instagram.com/kitaajanwachuku?igsh=MWJ6bGlxMW45OHFrNQ=="
+                      href="https://www.instagram.com/kaceefresh"
                       target="_blank"
                       className=""
                     >
                       <span className="">
-                        <FaInstagram size={20} color="red" />
+                        <FaInstagram size={20} color="white" />
                       </span>
                     </a>
                   </div>
                   <div className="">
                     <a
-                      href="https://wa.link/k5g70d"
+                      href="https://www.tiktok.com/@kaceefresh1"
                       target="_blank"
                       className=""
                     >
                       <span className="">
-                        <FaWhatsapp size={20} color="green" />
+                        <FaTiktok size={20} color="white" />
+                      </span>
+                    </a>
+                  </div>
+                  <div className="">
+                    <a
+                      href="https://x.com/kaceefresh"
+                      target="_blank"
+                      className=""
+                    >
+                      <span className="">
+                        <RiTwitterXLine size={20} color="white" />
                       </span>
                     </a>
                   </div>
                 </div>
               </div>
-              <div className="pt-3">
+              <div className="py-5">
                 <a
-                  href="tel:+2347055577074"
+                  href="tel:+2348065057485"
                   className="flex items-center gap-3"
                 >
-                  <FaPhone size={15} />
-                  <span className="">+2347055577074</span>
+                  <FaPhone size={15} color="white" />
+                  <span className="">+2348065057485</span>
                 </a>
               </div>
             </div>

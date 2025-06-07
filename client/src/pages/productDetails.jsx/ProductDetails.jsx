@@ -35,7 +35,7 @@ const ProductDetails = () => {
   }, [id]);
 
   return (
-    <section className="pt-20 h-full w-full">
+    <section className="pt-20 h-full md:h-screen w-full">
       <div className="container">
         <div className="w-full h-full">
           {loading ? (
