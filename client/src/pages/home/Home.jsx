@@ -22,7 +22,7 @@ const Home = () => {
       const res = await apiRequest.get("/api/all-products");
       if (res.data.success) {
         setAllListing(res.data.allProducts);
-        setListing(res.data.allProducts.reverse());
+        setListing(res.data.allProducts.reverse().slice(0, 20));
         setLoading(false);
       } else {
         console.log("Error fetching all products", res.data.message);

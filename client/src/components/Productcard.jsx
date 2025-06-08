@@ -17,7 +17,7 @@ const ProductCard = ({ name, imgUrl, id }) => {
     >
       <div
         onClick={() => setIsClicked((prev) => !prev)}
-        className="absolute right-2 top-2 border border-orange-700 p-1 rounded-full"
+        className="absolute right-2 top-2  p-1 rounded-full"
       >
         {isClicked ? (
           <FaHeart size={25} color="red" />

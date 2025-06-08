@@ -38,7 +38,6 @@ const Products = () => {
     fetchAllListing();
   }, []);
 
-
   const filterProperty = async () => {
     let productCopy = listing.slice();
     if (search) {
@@ -54,8 +53,9 @@ const Products = () => {
   return (
     <section className="pt-20 h-full w-full mb-10">
       <div className="container">
-        <h1 className="text-3xl font-bold black text-center text-white py-2 bg-gradient-to-tl from-orange-400 to-green-700 mt-5">
-          All Products
+        <h1 className="text-3xl font-semibold italic flex  justify-center items-center gap-2  text-white py-2 bg-gradient-to-tl from-orange-400 to-green-700 mt-5">
+          <span className="text-pink-900">{listing.length}</span>{" "}
+          <span className="">Products Found</span>
         </h1>
         <div className="w-full h-full flex items-center justify-center gap-3 mt-5">
           {showSearch && <Search onSearch={setSearch} />}

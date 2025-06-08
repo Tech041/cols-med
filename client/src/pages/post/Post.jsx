@@ -54,7 +54,7 @@ const Post = () => {
         <div className="w-full h-full flex flex-col justify-center items-center">
           <h1 className="text-sm py-4 font-semibold  text-red-700">
             In the input below, you are required to provide Product Name and
-            price before upload.
+            description before upload.
           </h1>
           <div className=" flex gap-2">
             <div className="">

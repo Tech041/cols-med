@@ -11,7 +11,7 @@ const adminLogin = async (req, res) => {
       password === process.env.ADMIN_PASSWORD
     ) {
       const token = jwt.sign(email + password, process.env.JWT_SECRET);
-      return res.json({ success: true, token, mesaage: "Login successful" });
+      return res.json({ success: true, token, message: "Login successful" });
     } else {
       return res.json({ success: false, message: "unauthorized access" });
     }

@@ -48,7 +48,7 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
       <div className="flex flex-col md:flex-row justify-center items-center gap-2  mt-6  ">
         <div className="flex-1 h-full w-full  flex flex-col justify-center items-center gap-1 ">
           <div className="h-full w-[70%]">
-            <img src={imgUrl} alt="" className="w-full h-full object-contain" />
+            <img src={imgUrl} width={200} height={200} alt="" className="" />
           </div>{" "}
         </div>
         <div className="flex-1">
