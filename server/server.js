@@ -2,18 +2,16 @@ import express from "express";
 import "dotenv/config";
 import cors from "cors";
 import connectDB from "./config/mongodb.js";
-// import helmet from "helmet";
+import helmet from "helmet";
 import connectCloudinary from "./config/cloudinary.js";
 import listingRouter from "./routes/product.js";
 import adminRouter from "./routes/admin.js";
-
-const allowedOrigins = ["http://localhost:3000", "https://cols-med.vercel.app"];
 
 const app = express();
 // middlewares
 app.use(cors());
 app.use(express.json());
-// app.use(helmet());
+app.use(helmet());
 
 // DB Connection
 connectDB();
