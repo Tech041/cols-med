@@ -86,14 +86,14 @@ export const singleProduct = async (req, res) => {
 
 export const editListing = async (req, res) => {
   try {
-    const { id, newDesc } = req.body;
-    if (!id || !newDesc) {
+    const { id, newDesc, newName } = req.body;
+    if (!id || !newDesc || !newName) {
       return res.json({ success: false, message: "All field required" });
     }
 
     await Listing.findByIdAndUpdate(
       id,
-      { description: newDesc },
+      { description: newDesc, name: newName },
       { new: true }
     );
 

@@ -40,7 +40,7 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
   return (
     <div className="w-full h-full pb-10 relative ">
       {isEditing && (
-        <EditListing exit={exitEditing} desc={description} id={id} />
+        <EditListing exit={exitEditing} desc={description} id={id} name={name} />
       )}
       <h1 className="text-3xl font-bold black text-center text-white py-2 bg-gradient-to-tl from-orange-400 to-green-700 mt-5">
         Product Details

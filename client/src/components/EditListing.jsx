@@ -4,8 +4,10 @@ import { toast } from "react-toastify";
 import { useContext } from "react";
 import { AppContext } from "../context/AppContext";
 
-const EditListing = ({ exit, desc, id }) => {
+const EditListing = ({ exit, desc, id, name }) => {
   const [newDesc, setNewDesc] = useState(desc);
+  const [newName, setNewName] = useState(name);
+
   const { token } = useContext(AppContext);
 
   const handleSubmit = async (e) => {
@@ -16,6 +18,7 @@ const EditListing = ({ exit, desc, id }) => {
         {
           id,
           newDesc,
+          newName,
         },
         { headers: { token } }
       );
@@ -44,6 +47,13 @@ const EditListing = ({ exit, desc, id }) => {
           Exit
         </button>
       </div>
+      <label className="block text-gray-700 font-bold mb-2">Edit Name:</label>
+      <input
+        className="w-full p-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"
+        placeholder="Enter name..."
+        value={newName}
+        onChange={(e) => setNewName(e.target.value)}
+      />
       <label className="block text-gray-700 font-bold mb-2">
         Edit Description:
       </label>
