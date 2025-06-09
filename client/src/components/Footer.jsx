@@ -17,7 +17,7 @@ const Footer = () => {
               <div className="p-2">
                 <a href="#home" className="">
                   <img
-                    src="/logo.png"
+                    src="/logo.webp"
                     alt=""
                     className="w-[70px] h-[70px] rounded-full"
                   />
