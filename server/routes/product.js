@@ -1,5 +1,6 @@
 import { Router } from "express";
 import {
+  checkStock,
   deleteList,
   editListing,
   fetchAllProduct,
@@ -14,5 +15,6 @@ listingRouter.post("/single-product/:id", singleProduct);
 listingRouter.get("/all-products", fetchAllProduct);
 listingRouter.post("/edit-listing", adminAuth, editListing);
 listingRouter.delete("/delete-listing/:id", adminAuth, deleteList);
+listingRouter.post("/stock-level/:id", adminAuth, checkStock);
 
 export default listingRouter;

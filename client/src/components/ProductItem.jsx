@@ -8,8 +8,9 @@ import apiRequest from "../utils/apiRequest";
 import { AppContext } from "../context/AppContext";
 import { useContext } from "react";
 
-const ProductItem = ({ name, description, imgUrl, id }) => {
+const ProductItem = ({ name, description, imgUrl, id, inStock }) => {
   const [isEditing, setIsEditing] = useState(false);
+  const [response, setResponse] = useState(true);
   const { token } = useContext(AppContext);
 
   const navigate = useNavigate();
@@ -31,6 +32,25 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
       toast.error(res.data.message);
     }
   };
+
+  // handling stock level
+
+  const handleStockLevel = async () => {
+    console.log("resposne to db is", response);
+    const res = await apiRequest.post(
+      `/api/stock-level/${id}`,
+      { response },
+      {
+        headers: { token },
+      }
+    );
+    if (res.data.success) {
+      toast.success(res.data.message);
+      window.location.reload();
+    } else {
+      toast.error(res.data.message);
+    }
+  };
   // Whatsapp message generator
   const phoneNumber = "+2348065057485"; // Replace with your WhatsApp number
   const encodedMessage = encodeURIComponent(
@@ -40,15 +60,23 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
   return (
     <div className="w-full h-full pb-10 relative ">
       {isEditing && (
-        <EditListing exit={exitEditing} desc={description} id={id} name={name} />
+        <EditListing
+          exit={exitEditing}
+          desc={description}
+          id={id}
+          name={name}
+        />
       )}
       <h1 className="text-3xl font-bold black text-center text-white py-2 bg-gradient-to-tl from-orange-400 to-green-700 mt-5">
         Product Details
       </h1>
       <div className="flex flex-col md:flex-row justify-center items-center gap-2  mt-6  ">
         <div className="flex-1 h-full w-full  flex flex-col justify-center items-center gap-1 ">
-          <div className="h-full w-[70%]">
+          <div className="h-full w-[70%] flex flex-col justify-center items-center gap-2">
             <img src={imgUrl} width={200} height={200} alt="" className="" />
+            <span className="font-semibold">
+              {inStock ? "In stock" : "Out of stock"}
+            </span>
           </div>{" "}
         </div>
         <div className="flex-1">
@@ -83,22 +111,47 @@ const ProductItem = ({ name, description, imgUrl, id }) => {
       </div>
       {/* actions  */}
       {token && (
-        <div className="flex justify-center items-center gap-3 my-4">
-          <button
-            onClick={() => {
-              setIsEditing(true), scrollTo(0, 0);
-            }}
-            className="px-3 py-1 bg-gradient-to-tr from-blue-600 to-blue-300 rounded-lg"
-          >
-            Edit Post
-          </button>
-          <button
-            onClick={() => handleDeleteList(id)}
-            className="px-3 py-1 bg-gradient-to-tr from-red-600 to-red-300 rounded-lg"
-          >
-            Delete Post
-          </button>
-        </div>
+        <>
+          <div className="flex justify-center items-center gap-3 my-4">
+            <button
+              onClick={() => {
+                setIsEditing(true), scrollTo(0, 0);
+              }}
+              className="px-3 py-1 bg-gradient-to-tr from-blue-600 to-blue-300 rounded-lg"
+            >
+              Edit Post
+            </button>
+            <button
+              onClick={() => handleDeleteList(id)}
+              className="px-3 py-1 bg-gradient-to-tr from-red-600 to-red-300 rounded-lg"
+            >
+              Delete Post
+            </button>
+          </div>
+
+          <div className="flex items-center justify-center gap-3 py-2">
+            <button
+              onClick={() => setResponse(false)}
+              className=" bg-red-400 text-sm text-white px-3 py-1 rounded-xl"
+            >
+              Out of Stock
+            </button>
+            <button
+              onClick={() => setResponse(true)}
+              className=" bg-green-400 text-white text-sm px-3  py-1 rounded-xl"
+            >
+              In Stock
+            </button>
+          </div>
+          <div className="flex justify-center items-center py-2">
+            <button
+              onClick={handleStockLevel}
+              className="bg-blue-700 text-white text-sm px-3 py-1 rounded-lg "
+            >
+              Update Stock
+            </button>
+          </div>
+        </>
       )}
     </div>
   );

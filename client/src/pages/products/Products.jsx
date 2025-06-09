@@ -81,6 +81,7 @@ const Products = () => {
                   id={item._id}
                   name={item.name}
                   imgUrl={item.imgUrl}
+                  inStock={item.inStock}
                 />
               ))}
             </div>

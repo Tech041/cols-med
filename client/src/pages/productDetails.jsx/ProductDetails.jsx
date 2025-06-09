@@ -7,7 +7,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 import Spinner from "../../components/Spinner";
 
-
 const ProductDetails = () => {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -48,6 +47,7 @@ const ProductDetails = () => {
                 description={product.description}
                 imgUrl={product.imgUrl}
                 id={product._id}
+                inStock={product.inStock}
               />
             )
           )}

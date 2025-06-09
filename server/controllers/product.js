@@ -118,3 +118,27 @@ export const deleteList = async (req, res) => {
     console.log("Error deleting listing", error);
   }
 };
+
+// checking stock level
+export const checkStock = async (req, res) => {
+  try {
+    const { id } = req.params;
+    const { response } = req.body;
+
+    // Update stock status in the database
+    const updatedListing = await Listing.findByIdAndUpdate(
+      id,
+      { inStock: response },
+      { new: true }
+    );
+
+    res.json({
+      success: true,
+      message: "Stock status updated",
+      updatedListing,
+    });
+  } catch (error) {
+    console.error("Error updating stock level:", error);
+    res.status(500).json({ success: false, message: "Server error" });
+  }
+};

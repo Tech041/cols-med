@@ -3,7 +3,7 @@ import { CiHeart } from "react-icons/ci";
 import { FaHeart } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const ProductCard = ({ name, imgUrl, id }) => {
+const ProductCard = ({ name, imgUrl, id, inStock }) => {
   const [isClicked, setIsClicked] = useState(false);
   const phoneNumber = "+2348065057485"; // Replace with your WhatsApp number
   const encodedMessage = encodeURIComponent(
@@ -11,10 +11,7 @@ const ProductCard = ({ name, imgUrl, id }) => {
   );
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
   return (
-    <div
-      to={"/"}
-      className=" cursor-pointer border-2  shadow-2xl rounded-lg overflow-hidden flex  justify-center items-center relative  "
-    >
+    <div className=" cursor-pointer border-2  shadow-2xl rounded-lg overflow-hidden flex  justify-center items-center relative  ">
       <div
         onClick={() => setIsClicked((prev) => !prev)}
         className="absolute right-2 top-2  p-1 rounded-full"
@@ -29,7 +26,7 @@ const ProductCard = ({ name, imgUrl, id }) => {
         <p className="pt-3 pb-1 text-sm text-center font-bold text-orange-700">
           {name}
         </p>
-        <div className="overflow-hidden flex justify-center ">
+        <div className="overflow-hidden flex flex-col items-center justify-center ">
           <img
             src={imgUrl}
             width={200}
@@ -37,6 +34,9 @@ const ProductCard = ({ name, imgUrl, id }) => {
             alt=""
             className="hover:scale-110 transition ease-in-out   "
           />
+          <span className="py-1 text-xs text-red-700 font-bold">
+            {inStock ? "" : "Out of stock"}
+          </span>
         </div>
 
         <div className=" absolute left-1 bottom-2 pr-2 ">

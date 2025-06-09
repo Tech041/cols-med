@@ -12,6 +12,11 @@ const listingSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
+  inStock: {
+    type: Boolean,
+    required: true,
+    default: true, // Products are in stock by default
+  },
 });
 const Listing = mongoose.model("Listing", listingSchema);
 export default Listing;

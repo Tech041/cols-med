@@ -38,6 +38,7 @@ const Collections = ({ listing, loading }) => {
                 imgUrl={item.imgUrl}
                 name={item.name}
                 id={item._id}
+                inStock={item.inStock}
               />
             ))}
           </div>
