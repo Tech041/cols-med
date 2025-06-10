@@ -74,7 +74,11 @@ const ProductItem = ({ name, description, imgUrl, id, inStock }) => {
         <div className="flex-1 h-full w-full  flex flex-col justify-center items-center gap-1 ">
           <div className="h-full w-[70%] flex flex-col justify-center items-center gap-2">
             <img src={imgUrl} width={200} height={200} alt="" className="" />
-            <span className="font-semibold">
+            <span
+              className={`${
+                inStock ? "text-green-700" : "text-red-700"
+              } font-semibold`}
+            >
               {inStock ? "In stock" : "Out of stock"}
             </span>
           </div>{" "}

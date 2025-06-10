@@ -74,8 +74,10 @@ const Navbar = () => {
                 )}
 
                 {!token && (
-                  <li onClick={() => scrollTo(0, 0)} className={liStyles}>
-                    <Link to="/login">Admin</Link>
+                  <li className={liStyles}>
+                    <Link onClick={() => scrollTo(0, 0)} to="/login">
+                      Admin
+                    </Link>
                   </li>
                 )}
               </ul>
@@ -159,7 +161,11 @@ const Navbar = () => {
                 onClick={() => setIsOpen((prev) => !prev)}
                 className={mobileStyle}
               >
-                {!token && <Link to="/login">Admin</Link>}
+                {!token && (
+                  <Link onClick={() => scrollTo(0, 0)} to="/login">
+                    Admin
+                  </Link>
+                )}
               </li>
             </ul>
             {/* social links */}
