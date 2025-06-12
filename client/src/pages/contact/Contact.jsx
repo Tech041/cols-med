@@ -18,7 +18,8 @@ const Contact = () => {
           <div className="flex flex-col justify-center items-center gap-4 mt-5 pt-5">
             <p className="font-bold text-center">
               <span className="font-semibold text-orange-500">📍 Location</span>
-              : Festac Town, Lagos State, Nigeria.
+              : No.20 Dada Aghedo Street Parkview Estate Ago palace way, Okota,
+              Lagos State, Nigeria.
             </p>
             <p className="font-bold text-center">
               <span className="font-semibold text-orange-900">🌐 Website</span>:
