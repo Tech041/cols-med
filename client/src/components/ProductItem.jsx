@@ -77,7 +77,7 @@ const ProductItem = ({ name, description, imgUrl, id, inStock }) => {
             <span
               className={`${
                 inStock ? "text-green-700" : "text-red-700"
-              } font-semibold`}
+              } font-semibold capitalize`}
             >
               {inStock ? "In stock" : "Out of stock"}
             </span>
@@ -86,7 +86,7 @@ const ProductItem = ({ name, description, imgUrl, id, inStock }) => {
         <div className="flex-1">
           <div className="px-4">
             <p className=" text-lg font-semibold text-blue-600 text-center gap-3 py-3">
-              <span className="pr-3">{name}</span>
+              <span className="pr-3 uppercase italic">{name}</span>
             </p>
             <p className="">{description}</p>
             <div className="py-3 mt-2 flex items-center justify-center">

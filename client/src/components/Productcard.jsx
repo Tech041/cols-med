@@ -23,7 +23,7 @@ const ProductCard = ({ name, imgUrl, id, inStock }) => {
         )}
       </div>
       <div className=" w-full h-full bg-white rounded-lg overflow-hidden">
-        <p className="pt-3 pb-1 text-sm text-center font-bold text-orange-700">
+        <p className="pt-3 pb-1 text-sm text-center font-bold text-orange-700 uppercase">
           {name}
         </p>
         <div className="overflow-hidden flex flex-col items-center justify-center ">
@@ -34,7 +34,7 @@ const ProductCard = ({ name, imgUrl, id, inStock }) => {
             alt=""
             className="hover:scale-110 transition ease-in-out   "
           />
-          <span className="py-1 text-xs text-red-700 font-bold">
+          <span className="py-1 text-xs text-red-700 font-bold capitalize">
             {inStock ? "" : "Out of stock"}
           </span>
         </div>
